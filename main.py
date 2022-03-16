@@ -27,39 +27,30 @@ def reduce(f, id_, a):
 
 #### Iterative solution
 def parens_match_iterative(mylist):
-    """
-    Implement the iterative solution to the parens matching problem.
-    This function should call `iterate` using the `parens_update` function.
-    
-    Params:
-      mylist...a list of strings
-    Returns
-      True if the parenthesis are matched, False otherwise
-      
-    e.g.,
-    >>>parens_match_iterative(['(', 'a', ')'])
-    True
-    >>>parens_match_iterative(['('])
-    False
-    """
-    ### TODO
-    pass
+  if mylist[0] == ")":
+    return False
+  elif mylist[-1] == "(":
+    return False
+  elif len(mylist) == 0:
+    return True
+  
+  end = iterate(parens_update, 0, mylist)
+
+  if end == 0:
+    return True
+  else:
+    return False
+
 
 
 def parens_update(current_output, next_input):
-    """
-    This function will be passed to the `iterate` function to 
-    solve the balanced parenthesis problem.
-    
-    Like all functions used by iterate, it takes in:
-    current_output....the cumulative output thus far (e.g., the running sum when doing addition)
-    next_input........the next value in the input
-    
-    Returns:
-      the updated value of `current_output`
-    """
-    ###TODO
-    pass
+  if next_input == "(":
+    current_output +=1
+  elif next_input == ")":
+    current_output -=1
+  return current_output
+
+
 
 
 def test_parens_match_iterative():
