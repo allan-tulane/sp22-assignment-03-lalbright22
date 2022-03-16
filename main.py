@@ -62,7 +62,8 @@ def test_parens_match_iterative():
 #### Scan solution
 
 def parens_match_scan(mylist):
-    """
+    
+  """
     Implement a solution to the parens matching problem using `scan`.
     This function should make one call each to `scan`, `map`, and `reduce`
     
@@ -78,8 +79,15 @@ def parens_match_scan(mylist):
     False
     
     """
-    ###TODO
-    pass
+  if mylist[0] == ")":
+    return False
+  elif mylist[-1] == "(":
+    return False
+  elif len(mylist) == 0:
+    return True
+
+  end = scan(mylist,)
+  
 
 def scan(f, id_, a):
     """
