@@ -5,6 +5,8 @@ from collections import defaultdict
 import math
 
 ### PARENTHESES MATCHING
+def plus(x, y):
+  return x + y
 
 def iterate(f, x, a):
     # done. do not change me.
@@ -79,6 +81,7 @@ def parens_match_scan(mylist):
     False
     
     """
+  convert_list = [paren_map(mylist[i]) for i in range(len(mylist))]
   if mylist[0] == ")":
     return False
   elif mylist[-1] == "(":
@@ -86,7 +89,14 @@ def parens_match_scan(mylist):
   elif len(mylist) == 0:
     return True
 
-  end = scan(mylist,)
+  h, s = scan(plus, 0, convert_list)
+  j = reduce(min_f, 0, h)
+  
+  if j == 0 and s == 0:
+    return True
+  else:
+    return False
+  
   
 
 def scan(f, id_, a):
