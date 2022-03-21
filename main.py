@@ -175,7 +175,10 @@ def parens_match_dc_helper(mylist):
   a, s = parens_match_dc_helper(mylist[:len(mylist)//2])
   d, f = parens_match_dc_helper(mylist[len(mylist)//2:])
 
+  
   if s == d and a == f:
+    print(a,s)
+    print(d,f)
     return balanced
   else:
     return False
@@ -185,5 +188,6 @@ def test_parens_match_dc():
     assert parens_match_dc(['(', ')']) == True
     assert parens_match_dc(['(']) == False
     assert parens_match_dc([')']) == False
+    #assert parens_match_dc(['(', 'a', ')', '(', ')']) == True
 
-    #assert parens_match_dc(['(', '(', ')', '(', '(', ')', ')', ')']) == True
+    #assert parens_match_dc(['(', '(', '(', ')', ')', ')']) == True
