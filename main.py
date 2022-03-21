@@ -161,19 +161,29 @@ def parens_match_dc(mylist):
     return n_unmatched_left==0 and n_unmatched_right==0
 
 def parens_match_dc_helper(mylist):
-    """
-    Recursive, divide and conquer solution to the parens match problem.
-    
-    Returns:
-      tuple (R, L), where R is the number of unmatched right parentheses, and
-      L is the number of unmatched left parentheses. This output is used by 
-      parens_match_dc to return the final True or False value
-    """
-    ###TODO
-    pass
-    
+  balanced = (0, 0)
+  right_heavy = (1, 0)
+  left_heavy = (0, 1)
 
+  if len(mylist) == 0:
+    return balanced
+  elif mylist[-1] == "(":
+    return left_heavy
+  elif mylist[0] == ")":
+    return right_heavy
+
+  a, s = parens_match_dc_helper(mylist[:len(mylist)//2])
+  d, f = parens_match_dc_helper(mylist[len(mylist)//2:])
+
+  if s == d and a == f:
+    return balanced
+  else:
+    return False
+    
+                                
 def test_parens_match_dc():
     assert parens_match_dc(['(', ')']) == True
     assert parens_match_dc(['(']) == False
     assert parens_match_dc([')']) == False
+
+    #assert parens_match_dc(['(', '(', ')', '(', '(', ')', ')', ')']) == True
