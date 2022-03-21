@@ -32,3 +32,8 @@ Span Reccurence: S(n) = S(n/2) + 1
 
 
 - **f.**
+Work Reccurence: W(n) = 2W(n/2) + 1
+  big O notation is O(n)
+
+Span Reccurrence: S(n) = S(n/2) + 1
+  big O notation is O(lg n)
