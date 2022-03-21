@@ -167,27 +167,32 @@ def parens_match_dc_helper(mylist):
 
   if len(mylist) == 0:
     return balanced
-  elif mylist[-1] == "(":
-    return left_heavy
-  elif mylist[0] == ")":
-    return right_heavy
+  elif len(mylist) == 1:
+    if mylist[0]=='(':
+      return left_heavy
+    elif mylist[0] == ')':
+      return right_heavy
+    else:
+      return balanced
 
   a, s = parens_match_dc_helper(mylist[:len(mylist)//2])
   d, f = parens_match_dc_helper(mylist[len(mylist)//2:])
 
   
-  if s == d and a == f:
-    print(a,s)
-    print(d,f)
-    return balanced
-  else:
-    return False
+  if s == d:
+    return (a,f)
+  elif d > s:
+    return (a + (d-s), f)
+  elif s > d:
+    return (a, s-d+f)
+    
     
                                 
 def test_parens_match_dc():
     assert parens_match_dc(['(', ')']) == True
     assert parens_match_dc(['(']) == False
     assert parens_match_dc([')']) == False
-    #assert parens_match_dc(['(', 'a', ')', '(', ')']) == True
+    assert parens_match_dc(['(', ')', '(', ')', '(', ')']) == True
 
-    #assert parens_match_dc(['(', '(', '(', ')', ')', ')']) == True
+    assert parens_match_dc(['(', '(', '(', ')', ')', ')']) == True
+    assert parens_match_dc(['(', 'a', ')', '(', ')']) == True
